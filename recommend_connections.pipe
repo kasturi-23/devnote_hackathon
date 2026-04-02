@@ -1,0 +1,187 @@
+{
+  "components": [
+    {
+      "id": "chat_1",
+      "provider": "chat",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {},
+        "type": "chat"
+      },
+      "ui": {
+        "position": {
+          "x": 20,
+          "y": 200
+        },
+        "measured": {
+          "width": 150,
+          "height": 117
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "agent_rocketride_1",
+      "provider": "agent_rocketride",
+      "config": {
+        "instructions": [
+          "You are a smart event networking assistant. Your job is to recommend the top 10 people a user should mingle with at an event, conference, or hackathon.",
+          "When a user asks who they should meet, first query the Neo4j graph database to fetch their own profile (skills, interests, networking_goal).",
+          "Then query the graph database to find other attendees who: (1) share similar interests, (2) have complementary or matching skills, (3) have compatible networking goals.",
+          "Score and rank all potential matches. Return a clearly formatted top 10 list. For each person include: their name, shared interests or skills, why they are a great match, and a suggested conversation starter."
+        ],
+        "max_waves": 10,
+        "parameters": {}
+      },
+      "ui": {
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "measured": {
+          "width": 150,
+          "height": 96
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "chat_1"
+        }
+      ]
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "config": {
+        "laneName": "answers"
+      },
+      "ui": {
+        "position": {
+          "x": 460,
+          "y": 200
+        },
+        "measured": {
+          "width": 150,
+          "height": 66
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "llm_openai_1",
+      "provider": "llm_openai",
+      "config": {
+        "profile": "openai-4o",
+        "openai-4o": {
+          "apikey": "${ROCKETRIDE_OPENAI_KEY}"
+        },
+        "parameters": {}
+      },
+      "ui": {
+        "position": {
+          "x": 130,
+          "y": 390
+        },
+        "measured": {
+          "width": 150,
+          "height": 66
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "llm",
+          "from": "agent_rocketride_1"
+        },
+        {
+          "classType": "llm",
+          "from": "db_neo4j_1"
+        }
+      ]
+    },
+    {
+      "id": "memory_internal_1",
+      "provider": "memory_internal",
+      "config": {
+        "type": "memory_internal"
+      },
+      "ui": {
+        "position": {
+          "x": 310,
+          "y": 390
+        },
+        "measured": {
+          "width": 150,
+          "height": 50
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "memory",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "db_neo4j_1",
+      "provider": "db_neo4j",
+      "config": {
+        "profile": "default",
+        "default": {
+          "auth_method": "userpass",
+          "database": "b4273b6a",
+          "db_description": "Graph database of event/hackathon attendees. Contains User nodes with properties: user_id, user_name, user_networking_goal, user_skills, user_email, user_interests. Also contains Person nodes with properties: first_name, last_name, age, email, skills, interests, networking_goals, preferred_contact_method. Event nodes have: event_id, event_name, event_time, event_description, event_type. Use Cypher to find attendees sharing interests, skills, or networking goals for recommending who to connect with.",
+          "max_attempts": 5,
+          "uri": "neo4j+s://b4273b6a.databases.neo4j.io",
+          "user": "b4273b6a",
+          "password": "63uRPuu5bneW30RKdUHg4SfWMw9d-S3XO_kKwqR55dI"
+        },
+        "parameters": {
+          "google": {}
+        }
+      },
+      "ui": {
+        "position": {
+          "x": 490,
+          "y": 390
+        },
+        "measured": {
+          "width": 150,
+          "height": 121
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "tool",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    }
+  ],
+  "project_id": "6ca1f65c-29b8-4323-a912-98ef80b3ef14",
+  "viewport": {
+    "x": 128.90110534722965,
+    "y": -170.67533335117957,
+    "zoom": 1.2077724305802249
+  },
+  "version": 1,
+  "docRevision": 1,
+  "source": "chat_1"
+}
