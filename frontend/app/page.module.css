@@ -1,142 +1,229 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  min-height: 100svh;
+  padding: 2rem 1rem 3rem;
+  background:
+    radial-gradient(circle at 12% 8%, #ffd289 0%, #ffd28900 32%),
+    radial-gradient(circle at 90% 10%, #70d4bf 0%, #70d4bf00 28%),
+    linear-gradient(180deg, #fffdf6 0%, #f3f8f9 100%);
 }
 
-.main {
-  display: flex;
-  flex: 1;
+.shell {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: appear 500ms ease forwards;
+}
+
+.header {
+  background: #11202a;
+  color: #f6f8f9;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 24px 42px #0f1d2733;
+}
+
+.kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8de3d0;
+  margin-bottom: 0.5rem;
+}
+
+.header h1 {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 4.2vw, 2.4rem);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.45rem;
+}
+
+.header p {
+  color: #d6e5ea;
+}
+
+.helperText {
+  color: #4f6b79;
+  font-size: 0.86rem;
+}
+
+.errorBanner {
+  background: #ffe0d8;
+  border: 1px solid #ffb7a5;
+  color: #5f1f0f;
+  border-radius: 0.85rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.controlsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.panel {
+  background: #ffffffeb;
+  border: 1px solid #dbe4e8;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  box-shadow: 0 12px 24px #1e2f3a14;
+}
+
+.panel label {
+  color: #263943;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.panel select {
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid #c6d4d9;
+  background: #f9fbfc;
+  font: inherit;
+  color: #102631;
+}
+
+.userMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.userMeta span {
+  background: #ecf4f6;
+  border: 1px solid #d0e0e4;
+  color: #20404d;
+  border-radius: 999px;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.8rem;
+}
+
+.eventCard {
+  background: #f6fbf8;
+  border: 1px solid #d4e8dd;
+  border-radius: 0.85rem;
+  padding: 0.75rem;
+}
+
+.eventCard h3 {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: #1a323e;
+  margin-bottom: 0.25rem;
+}
+
+.eventCard p {
+  color: #355362;
+  font-size: 0.92rem;
+}
+
+.results {
+  background: #fff;
+  border: 1px solid #dce6ea;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.results h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
+  color: #1f3440;
+  margin-bottom: 0.85rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.matchCard {
+  border: 1px solid #d8e3e8;
+  border-radius: 0.95rem;
+  padding: 0.75rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  display: grid;
+  gap: 0.4rem;
+  transform: translateY(6px);
+  opacity: 0;
+  animation: slideIn 420ms ease forwards;
+}
+
+.cardTop {
+  display: flex;
   justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  align-items: start;
+  gap: 0.5rem;
 }
 
-.intro {
+.matchCard h3 {
+  font-family: var(--font-title);
+  color: #15313d;
+  font-size: 1.12rem;
+}
+
+.matchCard p {
+  color: #34505f;
+  font-size: 0.89rem;
+}
+
+.score {
+  background: #14313d;
+  color: #e6f7f2;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.reasonRow {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.reasonChip {
+  font-size: 0.72rem;
+  background: #ffe8b8;
+  color: #4a3502;
+  border-radius: 999px;
+  padding: 0.25rem 0.48rem;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+  .controlsGrid {
+    grid-template-columns: 1fr;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .cards {
+    grid-template-columns: 1fr;
   }
 }

@@ -16,7 +16,7 @@
         },
         "measured": {
           "width": 150,
-          "height": 117
+          "height": 66
         },
         "nodeType": "default",
         "formDataValid": true
@@ -42,7 +42,7 @@
         },
         "measured": {
           "width": 150,
-          "height": 96
+          "height": 86
         },
         "nodeType": "default",
         "formDataValid": true
@@ -125,7 +125,7 @@
         },
         "measured": {
           "width": 150,
-          "height": 50
+          "height": 40
         },
         "nodeType": "default",
         "formDataValid": true
