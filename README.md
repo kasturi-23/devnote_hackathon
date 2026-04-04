@@ -55,7 +55,7 @@ OPENAI_API_KEY=sk-...
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --port 8000 --reload
 ```
 
 API Docs: http://localhost:8000/docs
@@ -94,6 +94,3 @@ App: http://localhost:3000
 - OpenAI: Add `OPENAI_API_KEY`; falls back gracefully.
 - CSVs: Place `events.csv` and `users.csv` in root.
 
-## License
-
-MIT
