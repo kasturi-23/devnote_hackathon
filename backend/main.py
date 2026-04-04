@@ -30,7 +30,7 @@ CSV_PATH = BASE_DIR.parent / "events.csv"
 # Neo4j
 NEO4J_URI = os.getenv("NEO4J_URI", "neo4j+s://b4273b6a.databases.neo4j.io")
 NEO4J_USER = os.getenv("NEO4J_USER", "b4273b6a")
-NEO4J_PASS = os.getenv("NEO4J_PASS", "63uRPuu5bneW30RKdUHg4SfWMw9d-S3XO_kKwqR55dI")
+NEO4J_PASS = os.getenv("NEO4J_PASS", "")
 neo4j_driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASS))
 
 # OpenAI client created in endpoint to avoid startup error
