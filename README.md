@@ -94,3 +94,4 @@ App: http://localhost:3000
 - OpenAI: Add `OPENAI_API_KEY`; falls back gracefully.
 - CSVs: Place `events.csv` and `users.csv` in root.
 
+-
